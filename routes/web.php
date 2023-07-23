@@ -13,5 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('bekci/')->group(function (){
+    Route::get('index',[\App\Http\Controllers\Backend\DefaultController::class,'indexPage'])->name('bekci.index');
+});
+
 Route::get('/',[\App\Http\Controllers\Frontend\DefaultController::class,'indexPage'])->name('index');
 

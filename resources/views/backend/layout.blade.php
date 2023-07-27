@@ -77,13 +77,13 @@
             </div>
             <ul class="side-menu metismenu">
                 <li>
-                    <a class="active" href=""><i class="sidebar-item-icon fa fa-th-large"></i>
+                    <a class="active" href="{{route('bekci.index')}}"><i class="sidebar-item-icon fa fa-th-large"></i>
                         <span class="nav-label">Ana Ekran</span>
                     </a>
                 </li>
                 <li class="heading">Menü</li>
                 <li>
-                    <a href=""><i class="sidebar-item-icon fa fa-user"></i>
+                    <a href="{{route('bekci.userList')}}"><i class="sidebar-item-icon fa fa-user"></i>
                         <span class="nav-label">Kullanıcı İşlemleri</span>
                     </a>
                 </li>
@@ -92,10 +92,10 @@
                         <span class="nav-label">Kategoriler</span><i class="fa fa-angle-left arrow"></i></a>
                     <ul class="nav-2-level collapse">
                         <li>
-                            <a href="">Kategori Listesi</a>
+                            <a href="{{route('bekci.categoryList')}}">Kategori Listesi</a>
                         </li>
                         <li>
-                            <a href="">Kategori Ekle</a>
+                            <a href="{{route('bekci.newCategoryPage')}}">Kategori Ekle</a>
                         </li>
                     </ul>
                 </li>

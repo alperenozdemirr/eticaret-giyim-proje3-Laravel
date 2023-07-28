@@ -104,10 +104,10 @@
                         <span class="nav-label">Ürün İşlemleri</span><i class="fa fa-angle-left arrow"></i></a>
                     <ul class="nav-2-level collapse">
                         <li>
-                            <a href="">Ürün Listesi</a>
+                            <a href="{{route('bekci.productList')}}">Ürün Listesi</a>
                         </li>
                         <li>
-                            <a href="">Ürün Ekle</a>
+                            <a href="{{route('bekci.productAddPage')}}">Ürün Ekle</a>
                         </li>
                     </ul>
                 </li>

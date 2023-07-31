@@ -134,10 +134,10 @@
                         <span class="nav-label">Banner İşlemleri</span><i class="fa fa-angle-left arrow"></i></a>
                     <ul class="nav-2-level collapse">
                         <li>
-                            <a href="">Banner Listesi</a>
+                            <a href="{{route('bekci.bannerList')}}">Banner Listesi</a>
                         </li>
                         <li>
-                            <a href="">Banner Ekle</a>
+                            <a href="{{route('bekci.bannerAddPage')}}">Banner Ekle</a>
                         </li>
                     </ul>
                 </li>

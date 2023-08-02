@@ -49,6 +49,14 @@ Route::prefix('bekci/')->group(function (){
     Route::get('banner/delete/code00{id}',[\App\Http\Controllers\Backend\BannerController::class,'delete'])->name('bekci.bannerDelete','id');
     Route::get('banner/up/code00{id}',[\App\Http\Controllers\Backend\BannerController::class,'orderUp'])->name('bekci.bannerUp','id');
     Route::get('banner/down/code00{id}',[\App\Http\Controllers\Backend\BannerController::class,'orderDown'])->name('bekci.bannerDown','id');
+
+    Route::get('introduction/list',[\App\Http\Controllers\Backend\IntroductionController::class,'lists'])->name('bekci.introductionList');
+    Route::get('introduction-new',[\App\Http\Controllers\Backend\IntroductionController::class,'addPage'])->name('bekci.introductionAddPage');
+    Route::post('introduction-new',[\App\Http\Controllers\Backend\IntroductionController::class,'add'])->name('bekci.introductionAdd');
+    Route::get('introduction/update/code00{id}',[\App\Http\Controllers\Backend\IntroductionController::class,'updatePage'])->name('bekci.introductionUpdatePage','id');
+    Route::post('introduction/update',[\App\Http\Controllers\Backend\IntroductionController::class,'update'])->name('bekci.introductionUpdate');
+    Route::get('introduction/delete/code00{id}',[\App\Http\Controllers\Backend\IntroductionController::class,'delete'])->name('bekci.introductionDelete','id');
+    Route::get('introduction/active/code00{id}',[\App\Http\Controllers\Backend\IntroductionController::class,'orderUp'])->name('bekci.introductionActive','id');
 });
 
 Route::get('/',[\App\Http\Controllers\Frontend\DefaultController::class,'indexPage'])->name('index');

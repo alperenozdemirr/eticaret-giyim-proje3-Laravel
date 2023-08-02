@@ -29,7 +29,7 @@ class ProductController extends Controller
             'price'=>'required',
             'stock'=>'required',
             'images'=>'required',
-            'images.*'=>'image|mimes:jpg,jpeg,image,png|max:350'
+            'images.*'=>'image|mimes:jpg,jpeg,image,png|max:10000'
         ]);
         $product=new Products();
         $product->name=$request->name;

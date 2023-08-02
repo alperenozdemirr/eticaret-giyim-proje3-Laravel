@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->integer('product_total_count')->nullable();
             $table->float('total_price',9,2)->nullable();
             $table->integer('order_status')->nullable();
+            $table->integer('address_id')->nullable();
             $table->timestamps();
         });
     }

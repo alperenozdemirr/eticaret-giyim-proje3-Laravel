@@ -23,14 +23,15 @@ class ProductController extends Controller
     public function add(Request $request){
         $request->flash();
         $request->validate([
-            'name'=>'required',
-            'info'=>'required',
-            'category'=>'required',
-            'price'=>'required',
-            'stock'=>'required',
-            'images'=>'required',
-            'images.*'=>'image|mimes:jpg,jpeg,image,png|max:10000'
+            'name' => 'required',
+            'info' => 'required',
+            'category' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'images' => 'required',
+            'images.*' => 'image|mimes:jpg,jpeg,png|max:10000|dimensions:min_width=100,min_height=100,max_width=1920,max_height=1080',
         ]);
+
         $product=new Products();
         $product->name=$request->name;
         $product->description=$request->info;
@@ -124,7 +125,7 @@ class ProductController extends Controller
     public function update(Request $request){
         $request->validate([
             'name'=>'required',
-            'info'=>'required',
+            'info' => 'required',
             'price'=>'required',
             'category'=>'required',
             'stock'=>'required'

@@ -65,7 +65,22 @@
                     <ul class="nav-shop">
                         <li class="nav-item"><button><i class="ti-search"></i></button></li>
                         <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-                        <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
+                        @auth
+                            <li style="margin-left: 0px;color:black;" class="nav-item dropdown">
+                                <a style="color:black" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                    Hesabım
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">{{\Illuminate\Support\Facades\Auth::user()->name}}</a>
+                                    <a class="dropdown-item" href="#">Hesabım</a>
+                                    <a class="dropdown-item" href="#">Siparişlerim</a>
+                                    <a class="dropdown-item" href="{{route('user.logout')}}">Güvenli Çıkış</a>
+                                </div>
+                            </li>
+                        @elseguest
+                            <li class="nav-item"><a class="button button-header" href="{{route('user.loginPage')}}">Giriş Yap</a></li>
+                        @endauth
+
                     </ul>
                 </div>
             </div>

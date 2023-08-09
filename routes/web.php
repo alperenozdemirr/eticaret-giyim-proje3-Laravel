@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Frontend\DefaultController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,9 +58,21 @@ Route::prefix('bekci/')->group(function (){
     Route::get('introduction/delete/code00{id}',[\App\Http\Controllers\Backend\IntroductionController::class,'delete'])->name('bekci.introductionDelete','id');
     Route::get('introduction/active/code00{id}',[\App\Http\Controllers\Backend\IntroductionController::class,'orderUp'])->name('bekci.introductionActive','id');
 });
+// user tarafı
+Route::get('/',[DefaultController::class,'indexPage'])->name('index');
+Route::get('user/login',[DefaultController::class,'loginPage'])->name('user.loginPage');
+Route::post('user/authenticate',[DefaultController::class,'authenticate'])->name('user.authenticate');
+Route::get('user/register',[DefaultController::class,'registerPage'])->name('user.registerPage');
+Route::post('user/register',[DefaultController::class,'cacheRegister'])->name('cacheRegister');
 
-Route::get('/',[\App\Http\Controllers\Frontend\DefaultController::class,'indexPage'])->name('index');
 
+Route::get('user/two-confirmation',[DefaultController::class,'confirmationPage'])->name('confirmationPage');
+Route::get('user/get-code',[DefaultController::class,'getCode'])->name('getCode');
+Route::post('user/two-confirmation',[DefaultController::class,'confirmation'])->name('confirmation');
+Route::middleware(['user'])->group(function (){
+    //user login olmuşsa kontrol..
+    Route::get('user/logout',[DefaultController::class,'logout'])->name('user.logout');
+});
 
 Auth::routes();
 

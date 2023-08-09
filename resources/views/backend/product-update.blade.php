@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label>Ürün Detay Bilgisi<br>(sadece yazı giriniz!)</label>
-                            <textarea id="editor1" name="info">{{$product->info}}</textarea>
+                            <textarea id="editor1" name="info">{{$product->description}}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Fiyat</label>

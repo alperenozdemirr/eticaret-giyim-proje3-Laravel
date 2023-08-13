@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\ConfirmationMailJob;
 use App\Jobs\NewUserMailJob;
 use App\Models\Banners;
+use App\Models\Baskets;
 use App\Models\Introduction;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -41,6 +42,7 @@ class DefaultController extends Controller
             return back()->withInput()->with('alert','ok');
         }
     }
+
     public function cacheRegister(Request $request){
         //register page'den gelen kullanıcı bilgilerini session'a alır code onaylana kadar bekletilir..
         //hata olursa session forget işle
@@ -95,5 +97,14 @@ class DefaultController extends Controller
     public function logout(){
         Auth::logout();
         return redirect(route('user.loginPage'));
+    }
+    public function basketCount(){
+        $count=null;
+        if (Auth::user()){
+            $count=Baskets::where('user_id',Auth::user()->id)->count();
+        }else{
+            $count=0;
+        }
+        return $count;
     }
 }

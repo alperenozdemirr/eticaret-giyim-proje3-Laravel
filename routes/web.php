@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\DefaultController;
+use App\Http\Controllers\Frontend\ShoppingCartController;
+use App\Http\Controllers\Frontend\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,8 +74,13 @@ Route::post('user/two-confirmation',[DefaultController::class,'confirmation'])->
 Route::middleware(['user'])->group(function (){
     //user login olmuşsa kontrol..
     Route::get('user/logout',[DefaultController::class,'logout'])->name('user.logout');
+    Route::get('shopping-cart',[ShoppingCartController::class,'show'])->name('shoppingCart');
+    Route::post('basket/add',[ShoppingCartController::class,'add'])->name('basketAdd');
+    Route::get('basket/delete/code:0{id}',[ShoppingCartController::class,'delete'])->name('basketDelete','id');
+    Route::get('basket/count-up{id}',[ShoppingCartController::class,'countUp'])->name('basketCountUp','id');
+    Route::get('basket/count-down{id}',[ShoppingCartController::class,'countDown'])->name('basketCountDown','id');
 });
-
+Route::get('product/detail/code:0{id}',[ProductController::class,'detail'])->name('productDetail','id');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

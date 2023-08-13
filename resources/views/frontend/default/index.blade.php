@@ -51,13 +51,13 @@
             </div>
             <div class="row">
                 @foreach($products as $product)
+
                 <div class="col-md-6 col-lg-4 col-xl-3">
                     <div class="card text-center card-product">
                         <div class="card-product__img">
                             <img class="card-img" src="{{asset('public_directory')}}/image/products/{{$product->images[0]->image}}" alt="">
                             <ul class="card-product__imgOverlay">
-                                <li><button><i class="ti-search"></i></button></li>
-                                <li><button><i class="ti-shopping-cart"></i></button></li>
+                                <li><a href="{{route('productDetail',$product->id)}}"><button><i class="ti-search"></i></button></a></li>
                                 <li><button><i class="ti-heart"></i></button></li>
                             </ul>
                         </div>
@@ -68,6 +68,7 @@
                         </div>
                     </div>
                 </div>
+
                 @endforeach
             </div>
         </div>

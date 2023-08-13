@@ -21,7 +21,7 @@
     <div class="main_menu">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand logo_h" href="index.html"><img src="{{asset('frontend')}}/img/logo.png" alt=""></a>
+                <a class="navbar-brand logo_h" href="{{route('index')}}"><img src="{{asset('frontend')}}/img/logo.png" alt=""></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
@@ -30,7 +30,7 @@
                 </button>
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{{route('index')}}">Anasayfa</a></li>
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                aria-expanded="false">Shop</a>
@@ -64,7 +64,7 @@
 
                     <ul class="nav-shop">
                         <li class="nav-item"><button><i class="ti-search"></i></button></li>
-                        <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
+                        <li class="nav-item"><a href="{{route('shoppingCart')}}"> <button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">{{\App\Http\Controllers\Frontend\DefaultController::basketCount()}}</span></button></a> </li>
                         @auth
                             <li style="margin-left: 0px;color:black;" class="nav-item dropdown">
                                 <a style="color:black" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">

@@ -79,6 +79,9 @@ Route::middleware(['user'])->group(function (){
     Route::get('basket/delete/code:0{id}',[ShoppingCartController::class,'delete'])->name('basketDelete','id');
     Route::get('basket/count-up{id}',[ShoppingCartController::class,'countUp'])->name('basketCountUp','id');
     Route::get('basket/count-down{id}',[ShoppingCartController::class,'countDown'])->name('basketCountDown','id');
+
+    Route::post('product/new-comment',
+        [ProductController::class,'newComment'])->name('newComment');
 });
 Route::get('product/detail/code:0{id}',[ProductController::class,'detail'])->name('productDetail','id');
 Auth::routes();

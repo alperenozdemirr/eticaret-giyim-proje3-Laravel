@@ -9,7 +9,7 @@ class Comments extends Model
 {
     use HasFactory;
     public function products(){
-        return $this->hasMany(Products::class,'product_id','id');
+        return $this->belongsTo(Products::class,'product_id','id');
     }
     public function users(){
         return $this->belongsTo(User::class,'user_id','id');

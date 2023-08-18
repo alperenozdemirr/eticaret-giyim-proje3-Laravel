@@ -112,6 +112,11 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="{{route('bekci.commentList')}}"><i class="sidebar-item-icon fa fa-comment"></i>
+                        <span class="nav-label">Yorum Yönetimi</span>
+                    </a>
+                </li>
+                <li>
                     <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
                         <span class="nav-label">Sipariş İşlemleri</span><i class="fa fa-angle-left arrow"></i></a>
                     <ul class="nav-2-level collapse">

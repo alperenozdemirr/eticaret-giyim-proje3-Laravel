@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Category;
+use App\Models\Comments;
 use App\Models\ProductImages;
 use App\Models\Products;
 use Illuminate\Support\Facades\File;
@@ -174,5 +176,34 @@ class ProductController extends Controller
         $search=$request->input('search');
         $products=Products::where('name','LIKE',"%$search%")->paginate(20);
         return view('backend.product-list')->with(compact('products'));
+    }
+    public function commentList(){
+        $comments=Comments::paginate(20);
+        return view('backend.comments',['comments'=>$comments]);
+    }
+    public function commentStatus(Request $request){
+        $comment=Comments::find($request->comment_id);
+        $comment->status=$request->comment_status;
+        $comment->save();
+        if ($comment){
+            return redirect(route('bekci.commentList'))->with('success','ok');
+        }else{
+            return back()->with('error','ok');
+        }
+    }
+    public function commentDelete($id){
+        $comment=Comments::find($id);
+        $comment->delete();
+        if ($comment){
+            return redirect(route('bekci.commentList'))->with('success','ok');
+        }else{
+            return back()->with('error','ok');
+        }
+    }
+    public function commentSearch(Request $request){
+        $search=$request->input('search');
+        $users=User::where('name','LIKE',"%$search%")->pluck('id');
+        $comments=Comments::orderByDesc('id')->whereIn('user_id',$users)->paginate(20);
+        return view('backend.comments',['comments'=>$comments]);
     }
 }

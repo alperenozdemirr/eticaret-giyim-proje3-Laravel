@@ -32,6 +32,7 @@ class ProductController extends Controller
             return back()->withInput()->with('error','ok');
         }
     }
+
 }
 
 

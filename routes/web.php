@@ -59,6 +59,11 @@ Route::prefix('bekci/')->group(function (){
     Route::post('introduction/update',[\App\Http\Controllers\Backend\IntroductionController::class,'update'])->name('bekci.introductionUpdate');
     Route::get('introduction/delete/code00{id}',[\App\Http\Controllers\Backend\IntroductionController::class,'delete'])->name('bekci.introductionDelete','id');
     Route::get('introduction/active/code00{id}',[\App\Http\Controllers\Backend\IntroductionController::class,'orderUp'])->name('bekci.introductionActive','id');
+
+    Route::get('comment/list',[\App\Http\Controllers\Backend\ProductController::class,'commentList'])->name('bekci.commentList');
+    Route::post('comment/status',[\App\Http\Controllers\Backend\ProductController::class,'commentStatus'])->name('bekci.commentStatus');
+    Route::get('comment/delete/code:00{id}',[\App\Http\Controllers\Backend\ProductController::class,'commentDelete'])->name('bekci.commentDelete','id');
+    Route::post('comment/search',[\App\Http\Controllers\Backend\ProductController::class,'commentSearch'])->name('bekci.commentSearch');
 });
 // user tarafı
 Route::get('/',[DefaultController::class,'indexPage'])->name('index');

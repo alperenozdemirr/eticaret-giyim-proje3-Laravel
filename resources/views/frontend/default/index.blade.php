@@ -51,14 +51,13 @@
             </div>
             <div class="row">
                 @foreach($products as $product)
-
                 <div class="col-md-6 col-lg-4 col-xl-3">
                     <div class="card text-center card-product">
                         <div class="card-product__img">
                             <img class="card-img" src="{{asset('public_directory')}}/image/products/{{$product->images[0]->image}}" alt="">
                             <ul class="card-product__imgOverlay">
                                 <li><a href="{{route('productDetail',$product->id)}}"><button><i class="ti-search"></i></button></a></li>
-                                <li><button><i class="ti-heart"></i></button></li>
+                                <li><button class="addToFavorite" data-product-id="{{$product->id}}"><i class="ti-heart"></i></button></li>
                             </ul>
                         </div>
                         <div class="card-body">
@@ -68,7 +67,6 @@
                         </div>
                     </div>
                 </div>
-
                 @endforeach
             </div>
         </div>
@@ -153,7 +151,35 @@
 
 
 </main>
-
+<script>
+    $('.addToFavorite').click(function (){
+        var productId = $(this).data('product-id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+           type:'POST',
+           url:'{{route('favoriteAdd')}}',
+            data:{
+                product_id: productId
+            },
+            success:function (response){
+               favoriteCount();
+               if(response.status=='add'){
+                   alertify.success("Favorilere eklendi");
+               }else if(response.status=='delete'){
+                    alertify.error("Favorilerden Silindi");
+                }
+               console.log(response);
+            },
+            error: function (error){
+               console.log("hata")
+            }
+        });
+    });
+</script>
 @endsection
 
 @section('css') @endsection

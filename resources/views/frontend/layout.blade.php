@@ -12,7 +12,11 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/vendors/nice-select/nice-select.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/vendors/owl-carousel/owl.theme.default.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/vendors/owl-carousel/owl.carousel.min.css">
+    <script src="{{asset('public_directory')}}/script/jquery-3.6.4.min.js"></script>
+    <link href="{{asset('public_directory')}}/alertify/css/alertify.min.css" rel="stylesheet">
+    <script src="{{asset('public_directory')}}/alertify/alertify.min.js"></script>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/style.css">
 </head>
 <body>
@@ -64,6 +68,7 @@
 
                     <ul class="nav-shop">
                         <li class="nav-item"><button><i class="ti-search"></i></button></li>
+                        <li class="nav-item"><a href="{{route('favorites')}}"> <button><i class="ti-heart"></i><span id="favoriteCount" class="nav-shop__circle"></span></button></a> </li>
                         <li class="nav-item"><a href="{{route('shoppingCart')}}"> <button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">{{\App\Http\Controllers\Frontend\DefaultController::basketCount()}}</span></button></a> </li>
                         @auth
                             <li style="margin-left: 0px;color:black;" class="nav-item dropdown">
@@ -180,7 +185,25 @@
     </div>
 </footer>
 <!--================ End footer Area  =================-->
-
+<script>
+    function favoriteCount() {
+        $.ajax({
+            type: 'GET',
+            url: '{{route('favoriteCount')}}',
+            success: function(response) {
+                var favoriteCountSpan=document.getElementById('favoriteCount');
+                favoriteCountSpan.innerHTML=response.favoriteCount;
+                console.log(response);
+            },
+            error: function(error) {
+                console.log('Hata:', error);
+            }
+        });
+    }
+    $(document).ready(function() {
+        favoriteCount();
+    });
+</script>
 @yield('js')
 
 <script src="{{asset('frontend')}}/vendors/jquery/jquery-3.2.1.min.js"></script>

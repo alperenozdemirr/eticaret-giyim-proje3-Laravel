@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\DefaultController;
 use App\Http\Controllers\Frontend\ShoppingCartController;
 use App\Http\Controllers\Frontend\ProductController;
+use App\Http\Controllers\Frontend\FavoriteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,9 +86,13 @@ Route::middleware(['user'])->group(function (){
     Route::get('basket/count-up{id}',[ShoppingCartController::class,'countUp'])->name('basketCountUp','id');
     Route::get('basket/count-down{id}',[ShoppingCartController::class,'countDown'])->name('basketCountDown','id');
 
-    Route::post('product/new-comment',
-        [ProductController::class,'newComment'])->name('newComment');
+    Route::post('product/new-comment', [ProductController::class,'newComment'])->name('newComment');
+
+    Route::get('favorites',[FavoriteController::class,'list'])->name('favorites');
+    Route::post('favorite/add',[FavoriteController::class,'add'])->name('favoriteAdd');
+    Route::get('fovorite/delete/code:0{id}',[FavoriteController::class,'delete'])->name('favoriteDelete','id');
 });
+Route::get('favoriteCount',[DefaultController::class,'favoriteCount'])->name('favoriteCount');
 Route::get('product/detail/code:0{id}',[ProductController::class,'detail'])->name('productDetail','id');
 Auth::routes();
 

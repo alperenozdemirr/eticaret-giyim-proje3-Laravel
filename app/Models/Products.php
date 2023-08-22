@@ -21,8 +21,5 @@ class Products extends Model
     public function images(){
         return $this->hasMany(ProductImages::class,'product_id');
     }
-    public function image(){
-        return $this->hasMany(ProductImages::class,'product_id')->orderBy('image_order')->limit(1);
-    }
 
 }

@@ -7,6 +7,7 @@ use App\Jobs\ConfirmationMailJob;
 use App\Jobs\NewUserMailJob;
 use App\Models\Banners;
 use App\Models\Baskets;
+use App\Models\Favorites;
 use App\Models\Introduction;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -106,5 +107,14 @@ class DefaultController extends Controller
             $count=0;
         }
         return $count;
+    }
+    public function favoriteCount(){
+        $favoriteCount=null;
+        if (Auth::user()){
+            $favoriteCount=Favorites::where('user_id',Auth::user()->id)->count();
+        }else{
+            $favoriteCount=0;
+        }
+        return response()->json(['favoriteCount'=>$favoriteCount]);
     }
 }

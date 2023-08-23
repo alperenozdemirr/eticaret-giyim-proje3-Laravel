@@ -12,7 +12,8 @@ class FavoriteController extends Controller
 {
     public function list(){
         $favorites=Favorites::where('user_id',Auth::user()->id)->paginate(15);
-        return view('frontend.favorites',['favorites'=>$favorites]);
+        $count=Favorites::where('user_id',Auth::user()->id)->count();
+        return view('frontend.favorites',['favorites'=>$favorites,'count'=>$count]);
     }
     public function add(Request $request){
         $check = Favorites::where('user_id', Auth::user()->id)

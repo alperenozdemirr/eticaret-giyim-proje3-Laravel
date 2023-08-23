@@ -1,5 +1,7 @@
 @extends('frontend.layout')
-@section('title','Favorilerim')
+@section('title')
+    Favorilerim ({{ $count }})
+@endsection
 @section('content')
 
     <!-- ================ start banner area ================= -->
@@ -11,7 +13,7 @@
                     <nav aria-label="breadcrumb" class="banner-breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Anasayfa</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Favorilerim({{\App\Http\Controllers\Frontend\DefaultController::basketCount()}})</li>
+                            <li class="breadcrumb-item active" aria-current="page">Favorilerim({{$count}})</li>
                         </ol>
                     </nav>
                 </div>
@@ -35,24 +37,32 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($favorites as $favorite)
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img style="width: 60px" src="{{asset('public_directory')}}/image/products/{{$favorite->products->images[0]->image}}" alt="">
+                        @if(count($favorites)==null)
+                            <div class="alert alert-warning col-md-12 text-center">
+                                Favori Ürününüz bulunmamaktadır(0)
+                            </div>
+                        @else
+                            @foreach($favorites as $favorite)
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img style="width: 60px" src="{{asset('public_directory')}}/image/products/{{$favorite->products->images[0]->image}}" alt="">
+                                            </div>
+                                            <div class="media-body">
+                                                <p>{{$favorite->products->name}}</p>
+                                            </div>
                                         </div>
-                                        <div class="media-body">
-                                            <p>{{$favorite->products->name}}</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>{{$favorite->products->price}}TL</h5>
-                                </td>
-                                <td class="remove-col"><a href="{{route('favoriteDelete',$favorite->id)}}" class="btn-remove"><i class="ti-close"></i></a></td>
-                            </tr>
-                        @endforeach
+                                    </td>
+                                    <td>
+                                        <h5>{{$favorite->products->price}}TL</h5>
+                                    </td>
+                                    <td class="remove-col"><a href="{{route('favoriteDelete',$favorite->id)}}" class="btn-remove"><i class="ti-close"></i></a></td>
+                                </tr>
+                            @endforeach
+                        @endif
+
+
 
 
 

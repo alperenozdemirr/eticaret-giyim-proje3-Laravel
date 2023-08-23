@@ -121,16 +121,16 @@
                         <span class="nav-label">Sipariş İşlemleri</span><i class="fa fa-angle-left arrow"></i></a>
                     <ul class="nav-2-level collapse">
                         <li>
-                            <a href="">Tüm Siparişler</a>
+                            <a href="{{route('bekci.orderList')}}">Tüm Siparişler</a>
                         </li>
                         <li>
-                            <a href="">Tedarik Edilen Siparişler</a>
+                            <a href="{{route('bekci.orderSupply')}}">Tedarik Edilen Siparişler</a>
                         </li>
                         <li>
-                            <a href="">Kargodaki Siparişler</a>
+                            <a href="{{route('bekci.orderCargo')}}">Kargodaki Siparişler</a>
                         </li>
                         <li>
-                            <a href="">Teslim Edilen Siparişler</a>
+                            <a href="{{route('bekci.orderDelivered')}}">Teslim Edilen Siparişler</a>
                         </li>
                     </ul>
                 </li>

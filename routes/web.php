@@ -65,6 +65,14 @@ Route::prefix('bekci/')->group(function (){
     Route::post('comment/status',[\App\Http\Controllers\Backend\ProductController::class,'commentStatus'])->name('bekci.commentStatus');
     Route::get('comment/delete/code:00{id}',[\App\Http\Controllers\Backend\ProductController::class,'commentDelete'])->name('bekci.commentDelete','id');
     Route::post('comment/search',[\App\Http\Controllers\Backend\ProductController::class,'commentSearch'])->name('bekci.commentSearch');
+
+    Route::get('order/list',[\App\Http\Controllers\Backend\OrderController::class,'list'])->name('bekci.orderList');
+    Route::get('order/supply',[\App\Http\Controllers\Backend\OrderController::class,'supply'])->name('bekci.orderSupply');
+    Route::get('order/cargo',[\App\Http\Controllers\Backend\OrderController::class,'cargo'])->name('bekci.orderCargo');
+    Route::get('order/delivered',[\App\Http\Controllers\Backend\OrderController::class,'delivered'])->name('bekci.orderDelivered');
+    Route::post('order/search',[\App\Http\Controllers\Backend\OrderController::class,'search'])->name('bekci.orderSearch');
+    Route::get('order/details/code-00{id}',[\App\Http\Controllers\Backend\OrderController::class,'details'])->name('bekci.orderDetails','id');
+    Route::post('order/change-status',[\App\Http\Controllers\Backend\OrderController::class,'changeStatus'])->name('bekci.orderChangeStatus');
 });
 // user tarafı
 Route::get('/',[DefaultController::class,'indexPage'])->name('index');

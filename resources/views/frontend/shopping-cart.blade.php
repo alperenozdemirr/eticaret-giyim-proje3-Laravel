@@ -1,5 +1,7 @@
 @extends('frontend.layout')
-@section('title','Sepetim')
+@section('title')
+    Sepetim ({{\App\Http\Controllers\Frontend\DefaultController::basketCount()}})
+@endsection
 @section('content')
 
     <!-- ================ start banner area ================= -->
@@ -36,6 +38,11 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @if(count($baskets)==null)
+                            <div class="alert alert-warning col-md-12 text-center">
+                                Sepetinizde Hiç Bir Ürün Bulunmamaktadır(0)
+                            </div>
+                        @else
                         @foreach($baskets as $basket)
                         <tr>
                             <td>
@@ -78,6 +85,7 @@
                             <td class="remove-col"><a href="{{route('basketDelete',$basket->id)}}" class="btn-remove"><i class="ti-close"></i></a></td>
                         </tr>
                         @endforeach
+                        @endif
                         <tr>
                             <td>
 

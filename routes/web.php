@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\DefaultController;
 use App\Http\Controllers\Frontend\ShoppingCartController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\FavoriteController;
+use App\Http\Controllers\Frontend\AccountController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -99,9 +100,22 @@ Route::middleware(['user'])->group(function (){
     Route::get('favorites',[FavoriteController::class,'list'])->name('favorites');
     Route::post('favorite/add',[FavoriteController::class,'add'])->name('favoriteAdd');
     Route::get('fovorite/delete/code:0{id}',[FavoriteController::class,'delete'])->name('favoriteDelete','id');
+
+    Route::get('my/account',[AccountController::class,'show'])->name('my.account');
+    Route::get('getProfile',[AccountController::class,'profile'])->name('getProfile');
+    Route::post('user/profile-update',[AccountController::class,'profileUpdate'])->name('profileUpdate');
+    Route::post('user/address/add',[AccountController::class,'addressAdd'])->name('addressAdd');
+    Route::get('user/address/code:0{id}',[AccountController::class,'addressGet'])->name('addressGet');
+    Route::post('user/address/update',[AccountController::class,'addressUpdate'])->name('addressUpdate');
+    Route::get('user/address/delete/code:0{id}',[AccountController::class,'addressDelete'])->name('addressDelete','id');
+    Route::post('user/profile/image',[AccountController::class,'imageChange'])->name('profileImage');
+    Route::get('user/test',function (){
+        return view('frontend.test');
+    })->name('userTest');
 });
 Route::get('favoriteCount',[DefaultController::class,'favoriteCount'])->name('favoriteCount');
 Route::get('product/detail/code:0{id}',[ProductController::class,'detail'])->name('productDetail','id');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

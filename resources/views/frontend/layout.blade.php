@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/vendors/owl-carousel/owl.theme.default.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/vendors/owl-carousel/owl.carousel.min.css">
     <script src="{{asset('public_directory')}}/script/jquery-3.6.4.min.js"></script>
+    <script src="{{asset('public_directory')}}/script/angular-1.6.9.min.js"></script>
     <link href="{{asset('public_directory')}}/alertify/css/alertify.min.css" rel="stylesheet">
     <script src="{{asset('public_directory')}}/alertify/alertify.min.js"></script>
-
+    <script src="{{asset('public_directory')}}/script/base.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/style.css">
 </head>
-<body>
+<body ng-app="httpServices">
 <!--================ Start Header Menu Area =================-->
 <header class="header_area">
     <div class="main_menu">
@@ -77,7 +78,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#">{{\Illuminate\Support\Facades\Auth::user()->name}}</a>
-                                    <a class="dropdown-item" href="#">Hesabım</a>
+                                    <a class="dropdown-item" href="{{route('my.account')}}">Hesabım</a>
                                     <a class="dropdown-item" href="#">Siparişlerim</a>
                                     <a class="dropdown-item" href="{{route('user.logout')}}">Güvenli Çıkış</a>
                                 </div>
